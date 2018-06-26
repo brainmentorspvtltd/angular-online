@@ -1,0 +1,58 @@
+@<decorator-name>()
+
+@Component({})
+
+@Component({
+selector:'app-child-component',
+templateUrl:'./child.component.html',
+styleUrls:['./child.component.css']
+
+[]-> property binding
+()->event binding
+[(ngModel)]-> 2-way data binding
+
+
+<input [ngModel]="name" (ngModelChange)="name=$event">
+
+
+<input type"text" [ngModel]="name" (ngModelChange)="setUppercaseName($event)">
+
+Directives:
+
+1. Attribute Directives
+2. Structural Directives
+
+(1)[ngClass]
+
+Class Binding
+<div [class.special]="isSpecial">Some text </div>
+
+(2)[ngStyle]
+
+<div [style.color]="isCounterFive?'red':'green'">TEXT </div>
+
+<div [style.font-size]="counter>=5?'x-large':'smaller'"></div>
+
+(3) ngModel
+
+*****************************************************************
+Structural directives
+-> responsible for the HTML layout
+They dynamically add or remove or manipulate the elements
+
+-> The structual directives always start with an * sign
+
+NgIf
+<div *ngIf=""></div>
+NgFor
+<div *ngFor=""></div>
+NgSwitch
+
+NgSwitch , NgSwitchCase and NgSwitchDefault
+
+
+
+
+
+
+

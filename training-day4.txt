@@ -1,0 +1,246 @@
+Pipes:
+
+we can push raw toString values to the user
+April 15,1988
+
+Fri Apr 15 1988 00:00:00 GMT-0700 (Pacific Daylight Time)
+
+display-value transformations
+
+Json pipe:
+{{data | json }}
+
+Parameterizing a pipe:
+<pipe-name>:<parameter>
+<pipe-name>:<param1>:<param2>
+
+{{birthday | date:"mm/dd/yy"}}
+-> output=> 04/15/88
+
+Some more examples of pipes:
+
+1. {{salary | currency:USD:true:2.2-4 }} 
+'2' here is the no. of digits that we want to display
+and whats follows after decimal is decimal precision
+
+2. {{ salary | number:3.2 }}
+
+3. {{ name | slice:0:3 }}
+
+Chaining Pipes:
+{{ birthday | date | uppercase }}
+
+Custom Pipes:
+
+Following are the steps for custom pipes:
+
+1. Build a class and annotate it with the @Pipe decorator.
+ Provide a name for your pipe in the decorator meta data.
+
+@Pipe({
+name : '<pipe-name>'
+})
+
+2. Implement Pipe transform interface.
+
+3. Override the transform method
+
+transform (value:any,firstParameter:<datatype>,secondParameter:<Datatype>){
+return <result> ; }
+
+4. Add its entri in the module.
+
+How to use a custom pipe?
+
+eg. urlpipe
+<img src="mypath | urlpipe:'someurl'" >
+
+
+View Encapsulation:
+
+styles.css is the global stylesheet
+The index.html takes styles from this css
+
+Style scopes/style modularity:
+
+1. You can use class names and selectors that make te most sense in the context of your component.
+
+2. Class names and the selectors are local to the component to which they belong.And do not collide/clash with the names and selectors used elsewherein the appn.
+
+3. Changes to the styles in one component will not afftect the styles in another component.
+
+4. Yoc can co-locate the CSS code of each component with the html and the ts code of the component which leads to a neat and tidy project structure.
+
+
+Lifecycle hooks/lifecycle methods:
+
+A component has a lifecycle:
+1. creates it
+2. renders it
+3. creates its children
+4. renders its children
+5. checks for changes in the data bound properties 
+6. destroys it bfore removing it from the DOM
+
+We can tap into these lifecycle hooks by IMPLEMENTING ONE OR MORE OF THE LIFECYCLE HOOK INTERFACES'.
+
+for eg.OnInit interface has a method named ngOnInit() that Angular calls after the creation of the component.
+After component creation lifecycle hook methods are called in the following sequence:
+
+1.ngOnChanges()
+2.ngOnInit()
+3.ngDoCheck()
+4.ngAfterContentInit()
+5.ngAfterContentChecked()
+6.ngAfterViewInit()
+7.ngAfterViewChecked()
+8.ngDestroy()
+
+ngOnChanges()
+rsponds when angular sets/resets the data-bound properties.
+this is called:
+(1)before ngOnInit()
+(11)whenever the data-bound properties change.
+
+SimpleChanges
+ngOnChanges(changes:SimpleChanges):void
+
+SimpleChanges contains the current and previous property values.
+changes maps to SimpleChanges.
+
+ngOnChanges(changes:SimpleChanges){
+for(let propName in changes){
+let chng = changes[propName];
+let cur = JSON.stringify(chng.currentValue);
+let prev = JSON.stringify(chng.previousValue);
+this.changeLog.push(`${propName}:currentValue = ${cur},previousValue=${prev}`);
+}}
+
+@Input
+name:string;
+
+in the parent.comp.ts
+name:string;
+changeName(event){
+this.name = event.target.value;
+}
+
+parent.component.html:
+<app-child-comp [name]="name"></app-child-comp>
+Name: <input type="text" (keyup)="changeName($event)">
+
+
+2. ngOnInit()
+  export clas Component{
+   constructor(){ this.b = 'dsfdfh';}
+  ngOnInit(){ http.get('url');}
+ Use ngOnInit for complex initializations.
+
+3. ngDoCheck()
+   not used much becuase of performance issues and resource wastage.
+
+4.ngAfterContentInit()
+ after angular projects external content into the component view.
+ Content projection: a way to import html vontent from outside the component and insert that  content into the component's template in the designated spot.
+<container-comp> <child-component></child-comp> </child-component>
+
+<ng-content></ng-content>
+
+5. 
+ngAfterContentChecked()
+
+6. NgAfterViewInit()
+ called when component and its children have been initialized.
+
+7. NgAfterViewChecked()
+ called after Angular checks the component view and child views.
+
+8. NgOnDestroy()
+ mostly used with NgIf and Routing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

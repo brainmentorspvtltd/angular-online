@@ -1,0 +1,85 @@
+ COMPONENT INTERACTION
+
+1. we can share data from parent to child via Input binding (custom property)
+
+declare a var in the parent class whose data/value we want to share
+and add a custom property in the child component tag 
+<app-child-comp [sendtochild]="msg"></app-child-comp>
+
+child can receive this variable via @Input decorator
+@Input()
+sendtochild:string
+
+{{sendtochild}} --> child comp template
+
+2. we can share data from child to parent via output binding/custom events
+
+in the child component template we will make a button and add a click event to it.
+we will bind a function to that event
+<button (click)="callParent"></button>
+
+in child component ts:
+we will define the callparent function and this function will emit data to the parent
+
+import Output,EvenetEmitter from @angular/core
+@Output()
+callparent:EventEmitter<string> = new EventEmitter<string>();
+
+The child has emitted data to the parent through a function called callParent which will act as a 
+custom event for the Parent.
+
+Now moving to the parent template i.e app.component.html
+<app-child-component (callParent)="parentCalled($event)"></app-child-component>
+
+in parent component ts:
+parent will retrieve the data emitted to it
+parentCalled(data):void{
+this.title = data;
+}
+This is the data that has been emitted from the cild to the parent.
+
+We click a button in the child---->that click triggers a callParent function defined in child.component.ts
+-----> that function emits some data to the parent----> parent now listens for the custom event---->gives the data to it function
+and retrieves it.
+
+3. ViewChild
+ViewChild gives the parent a reference to the child,
+so that the parent can reference all the child properties and methods.
+
+import ViewChild
+and import the component whose reference we want to give to the parent
+
+@ViewChild(ChildComponent)
+object:ChildComponent
+
+this.object.<any-child-property>
+
+ViewChildren gives a reference to all the instances of the child component present in the parent template
+
+import ViewChildren,QueryList
+
+@ViewChildren()
+children:QueryLisy<ChildComponent>
+
+
+Now the reference of all the instances of the child component present in the parent i.e. (app component)
+are stored in children variable and can be accessed using a forEach array traversal.
+
+4. Service
+which is used to share data between siblings or cousins
+
+make a file myservice.service.ts
+import the Injectable decorator from angular/core which tells angular that the below is going to be a service
+
+@Injectable()
+export class MyService{}
+
+The service will contain the data which is to be shared among different components.
+And can be accessed by injecting the service in the component's constructor.
+
+import {MYservice} from './<path-to-service>
+constructor(private myservice:MyService)
+this.myservice.<any-property-or-method>
+
+Since Angular makes a singleton object of the Service, the changes made in the service by one component will be automatically reflected
+in other components

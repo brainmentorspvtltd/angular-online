@@ -1,0 +1,235 @@
+FORMS
+Form Validations
+
+1. Template driven Form Validation: form controls accessed through the template
+<input type="text" required>
+
+2. Reactive forms Validation : Reactive forms present the form controls as objects.
+So we can control them through our ts.
+
+Template driven forms:
+
+Steps:
+1. Create a model class.
+ 
+2. Create a component that will control the form.
+
+3. Create a template with initial form layout.
+
+4. Bind the data properties to the input controls using NgModel two-way binding.
+
+5. Add a name attribute to each form control.
+
+6. Add a custom CSS to provide a visual feedback.
+
+7. Show and hide validation error messages.
+
+8. Handle form submission with ngSubmit.
+
+9. Disable the form's Submit button until the form is valid.
+
+user.ts
+
+export class User{
+name:string;
+contact:string;
+email:string;
+
+constructor(name,contact,email){
+this.name = name;
+this.contact = contact;
+this.email = email;
+}
+}
+
+this class is an anemic model with few requirements and no behaviour.
+
+let user = new User('ram','456655','fddbt@gyuj')
+
+2. ng g c user
+  
+  User Component
+  //instance variable
+  model = new User('Ram','99999','me@example.com');
+  
+  submitted = false;
+  
+  onSubmit(){
+  this.submitted = true;
+  }
+  
+  Important----->
+  NgModel -> FormsModules 
+go to app.module.ts
+  import { FormsModule } from '@angular/forms';
+
+ imports:[FormsModule]
+
+
+NgForm directive:
+
+1. holds the controls created for the elements with the ngModel directive and the name attribute.
+
+2. it monitors their properties including their validity.
+
+3. Apart from the control's validity, ngForm itself has a valid property which is true only if the form is true.
+
+Defining a name attribute is a requirement when using ngmodel with a form.
+
+What does NgModel do?
+
+1. two-way data binding
+
+2. It tells us: (tracks control state and validity)
+  a. if the user touched the control
+  b. if the value has changed 
+  c. if the value became invalid
+
+3. Applies appropriate CSS classes to the control based on the current state
+
+State:
+1.the control has been visited
+  if true: ng-touched
+  if false: ng-untouched
+2.the control's value has changed
+  if true: ng-dirty
+  if false: ng-pristine
+3.the control's value is valid 
+  if true: ng-valid
+  if false: ng-invalid
+
+forms.component.css
+
+.ng-valild[required],.ng-valid.required{
+  border:2px solid red
+}
+
+1. <input type="text" class="ng-valid" required> 
+2. <input type="text" class="ng-valid required">
+3. <input type="text" clas="ng-valid required" required>
+
+ Show/Hide validation messages
+steps:
+
+1. Define a template reference variable for the input tags.
+
+2. Bind it with ngModel <#input type="text" #name="ngModel">
+
+3. Add a message which displays when certain controls are true/false.
+
+
+Routing:
+
+makes an appn. SPA (single page appn.)
+
+Steps:
+1. to create a file named <comp-name>.routes.ts
+2. import {Route} in our app.routes.ts
+3. import the RouterModule from angular/router
+4. make an entry in the module.ts and include it in the imports
+5. mention a <router-outlet></router-oulet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
