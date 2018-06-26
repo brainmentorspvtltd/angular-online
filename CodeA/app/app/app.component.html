@@ -1,0 +1,14 @@
+<div>
+<div>
+I am the App Component HTML
+</div>
+<app-child-component [sendtochild]="msg" (callParent)="parentCalled($event)"></app-child-component>
+<button (click)="printChildData()">Print Child Data</button>
+<h1> {{title}}</h1>
+
+<button (click)="increment()">Increment counter {{counter}}</button>
+<button (click)="loadData()">Load Data</button>
+{{names}}
+<app-salary-component ></app-salary-component>
+
+</div>

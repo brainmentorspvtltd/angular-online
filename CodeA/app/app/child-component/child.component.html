@@ -1,0 +1,47 @@
+<div>
+    <span>Child Component</span>
+    <h1>TITLE {{title}}</h1>
+     <h2> {{sendtochild}} </h2>
+     <button (click)="callParent()">CALL PARENT </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <input type=" text" [(ngModel)]="name"> -->
+    <input type="text" [ngModel]="name" (ngModelChange)="name=$event">
+    <h2>Name is {{name}}</h2>
+    <button (click)="increment()">{{counter}}</button>
+    <div [ngClass]="currentClass"> I am the NgClass Div</div>
+
+    <div [ngStyle]="{'font-style':this.imp?'italic':'normal',
+                     'font-weight':this.imp?'bold':'normal'}">I am ng style div</div>
+        <button (click)="toggle()">Toggle flag</button>
+
+    <div>
+        <ul>
+            <li *ngFor="let emp of empNames"> {{ emp }}
+            <strong *ngIf="emp=='ram'">{{emp}}</strong>
+            <div *ngIf="emp==getEmpName()"> I am a conditionally created div. I am created only when emp is equal to return value of empName()</div>
+            </li>
+        </ul>
+    </div>
+
+<div [ngSwitch]="colorcode">
+    <h1 *ngSwitchCase="red"> RED</h1>
+    <h2 *ngSwitchCase="green"> GREEN</h2>
+    <h3 *ngSwitchDefault> Neither red nor green</h3>
+</div>
+</div>
