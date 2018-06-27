@@ -1,0 +1,140 @@
+1. Routing programatically
+2. Auxillary Routes
+3. Guard
+4. RouterLinkActive
+5. Child Routes
+
+1.Programatic/Dynamic Routing
+
+step-01 import {Router} from '@angular/router';
+step-02 inject the Router service in your contructor
+step-03 this.router.navigate(["/<route>"])
+
+2. Auxillary Routes
+ step-01 <li><a [routerLink]="['/',{ outlets: { addOutlet: ['add'] } }]"> Add a Task </a></li>
+         mention a router outlet name where we intend to load the component
+         and generate a route.
+         Here '/add' is the route and 'addOutlet' is the router-outlet's name.
+step-02  add  router outlet of the same name
+         <router-outlet name="addOutlet"></router-outlet>
+step-03  configure the route in routes.ts
+         add an additional 'outlet' property to the route object.
+         {path:'add',component:AddComponent,outlet:'addOutlet'}
+3. Guard (Conditional Routing)
+
+step-01 The first step is to make a service and write your authorization logic in it.
+
+step-02 Import the Router service and the CanActivate interface.
+
+step-03 Implement the interface override the the canActivate method of the interface.
+
+step-04 Return true/false from the method based on some condition/criteria.
+
+step-05 Import the service in your routes.ts and add a canActivate to the route object. 
+        If the service returns true the access is granted otherwise it routes to some other link.
+
+4. Parameterizing the routes:
+
+step-01 Pass the paramater along with route where the route is generated in this way.
+        <li> <a routerlink="/mobiles/:9000"> Mobiles </a></li>
+
+step-02 Map this parameter to a variable in the route object (in routes.ts) which will hold the parameter's value.
+
+step-03 To retrieve this value, go to the component.ts of the component that this route loads.
+        import ActivatedRoute service from @angular/router and inject it into the contructor.
+
+step-04 this.sub = this.route.params.subscribe(params=>{
+        this.title = "Price for this mobile is"+params.price;});
+        subscribe method of ActivatedRoute gives you an object from which we can retrieve the value.
+        params.price or params[price].
+  
+D3js:
+It is meant for parsing some data and displaying charts/graphs of that data.
+
+In angular nvd3 for this.
+
+1. Pie Chart
+2. HistoricalBarChart
+
+Steps to configure nvd3 for your application.
+
+step-01 npm install ng2-nvd3 --save
+        If you have your angular app in a folder called app-folder and you have your app named as
+        my-app inside that app-folder, then always first do cd my-app and them run this npm install command.
+        If your creating a new app,run this cmd only after doing ng new my-app and cd my-app.
+
+step-02 go to module.ts nd import it in NgModule.
+        
+        import {NvD3Module} from 'ng2-nvd3';
+        import d3;
+        import 'nvd3';
+
+        imports:[NvD3Module]
+
+step-03 go to angular.json and add the nvd3 stylesheet into the styles array.
+        "../node_modules/nvd3/build/nv.d3.css"
+
+step-04 go to component.ts and provide(declare) two parameters to the chart directive. 
+        options and data
+        options -> for configuring your chart
+        data -> for plotting the chart
+
+step-05 include nvd3 tag in your html and bind with options and data property.
+        <nvd3 [options]="options" [data]="data"></nvd3>
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
